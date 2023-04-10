@@ -10,6 +10,9 @@ const faqRoutes = require('./routes/faqRoute');
 
 app.use(express.static('public'));
 app.use(express.json());
+
+connectDB();
+
 app.use(
   cors({
     origin: '*',
@@ -19,5 +22,3 @@ app.use(
 
 app.use('/images', imagesRoutes);
 app.use('/faq', faqRoutes);
-
-connectDB();
