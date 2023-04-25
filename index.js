@@ -12,21 +12,10 @@ app.use(express.static('public'));
 app.use(express.json());
 dotenv.config();
 app.use(cors());
-
 connectDB();
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
 
 app.use('/images', imagesRoutes);
 app.use('/faq', faqRoutes);
-
-// Define endpoints
-
-app.post('/users', (req, res) => {
-  // Create a new user
-  res.send('User created!');
-});
 
 //DATABASE CONNECTION SETUP
 const PORT = process.env.PORT || 3001;
