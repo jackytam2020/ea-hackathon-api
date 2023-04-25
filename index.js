@@ -1,4 +1,4 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -10,15 +10,28 @@ const faqRoutes = require('./routes/faqRoute');
 
 app.use(express.static('public'));
 app.use(express.json());
+dotenv.config();
+app.use(cors());
 
 connectDB();
-
-app.use(
-  cors({
-    origin: '*',
-    methods: ['GET'],
-  })
-);
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
 
 app.use('/images', imagesRoutes);
 app.use('/faq', faqRoutes);
+
+// Define endpoints
+
+app.post('/users', (req, res) => {
+  // Create a new user
+  res.send('User created!');
+});
+
+//DATABASE CONNECTION SETUP
+const PORT = process.env.PORT || 3001;
+//connect to MongoDB Schema
+connectDB();
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
